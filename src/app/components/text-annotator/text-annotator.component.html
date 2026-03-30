@@ -1,0 +1,39 @@
+<div class="annotator-container">
+  <div
+    #textContainer
+    class="text-content"
+    [innerHTML]="contentWithHighlights"
+    (mouseover)="onMouseEnter($event)"
+    (mouseout)="onMouseLeave()"
+  ></div>
+
+  <div
+    *ngIf="tooltipVisible && tooltipContent"
+    class="tooltip"
+    [style.left.px]="tooltipPosition.x"
+    [style.top.px]="tooltipPosition.y"
+  >
+    {{ tooltipContent }}
+  </div>
+
+  <div class="annotation-controls" *ngIf="selectedText" (click)="stopPropagation($event)">
+    <label>Цвет выделения:</label>
+    <select [(ngModel)]="selectedColor">
+      <option value="#ffff00">Желтый</option>
+      <option value="#ff9999">Розовый</option>
+      <option value="#99ff99">Зеленый</option>
+      <option value="#9999ff">Голубой</option>
+    </select>
+
+    <label>Примечание:</label>
+    <input
+      type="text"
+      [(ngModel)]="annotationNote"
+      placeholder="Введите примечание..."
+      (click)="stopPropagation($event)"
+    />
+
+    <button (click)="saveAnnotation()">Сохранить аннотацию</button>
+    <button (click)="clearSelection()">Очистить</button>
+  </div>
+</div>

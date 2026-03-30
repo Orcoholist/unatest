@@ -1,0 +1,39 @@
+<div class="article-list-container">
+  <div class="header">
+    <h2>Список статей</h2>
+    <button class="btn btn-primary" (click)="createNewArticle()">Создать новую статью</button>
+  </div>
+
+  <ul class="article-list">
+    <li *ngFor="let item of annotatedArticles$ | async" class="article-item">
+      <div class="article-info">
+        <h3>{{ item.article.title }}</h3>
+        <p
+          [innerHTML]="item.annotatedContent"
+          (mouseover)="onMouseEnter($event)"
+          (mouseout)="onMouseLeave($event)"
+        ></p>
+        <small>Создано: {{ item.article.createdAt | date: 'short' }}</small>
+      </div>
+
+      <div class="article-actions">
+        <button class="btn btn-primary" (click)="editArticle(item.article.id)">
+          Редактировать
+        </button>
+        <button class="btn btn-danger" (click)="deleteArticle(item.article.id)">Удалить</button>
+      </div>
+    </li>
+  </ul>
+
+  <div *ngIf="(annotatedArticles$ | async)?.length === 0">
+    <p>Статей пока нет. Нажмите "Создать новую статью", чтобы добавить первую статью.</p>
+  </div>
+  <div
+    *ngIf="tooltipVisible && tooltipContent"
+    class="tooltip"
+    [style.left.px]="tooltipPosition.x"
+    [style.top.px]="tooltipPosition.y"
+  >
+    {{ tooltipContent }}
+  </div>
+</div>

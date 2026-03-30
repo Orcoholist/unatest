@@ -1,0 +1,46 @@
+<div class="editor-container">
+  <h2>{{ article ? 'Редактировать статью' : 'Создать новую статью' }}</h2>
+
+  <form (ngSubmit)="saveArticle()" #articleForm="ngForm">
+    <div class="form-group">
+      <label for="title">Заголовок статьи:</label>
+      <input
+        type="text"
+        id="title"
+        name="title"
+        [(ngModel)]="articleTitle"
+        required
+        class="form-control"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="content">Содержание статьи:</label>
+      <textarea
+        id="content"
+        name="content"
+        [(ngModel)]="articleContent"
+        rows="15"
+        class="form-control"
+        placeholder="Введите содержание статьи здесь..."
+      ></textarea>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" [disabled]="!articleForm.form.valid" class="btn btn-primary">
+        Сохранить
+      </button>
+      <button type="button" (click)="cancel()" class="btn btn-secondary">Отмена</button>
+    </div>
+  </form>
+
+  <!-- Display annotator if editing existing article -->
+  <div *ngIf="articleId" class="annotator-section">
+    <h3>Аннотирование текста</h3>
+    <app-text-annotator
+      [articleId]="articleId"
+      [content]="articleContent"
+      (annotationsChanged)="loadArticle()"
+    ></app-text-annotator>
+  </div>
+</div>

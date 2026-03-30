@@ -1,0 +1,79 @@
+.annotator-container {
+  position: relative;
+}
+
+.text-content {
+  line-height: 1.6;
+  min-height: 200px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  overflow-x: auto;
+  font-family: Arial, sans-serif;
+  white-space: pre-wrap;
+}
+
+.highlighted {
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.highlighted:hover {
+  opacity: 0.8;
+}
+
+.tooltip {
+  position: fixed;
+  background-color: #333;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  z-index: 1000;
+  max-width: 300px;
+  word-wrap: break-word;
+  pointer-events: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  /* Удалите ::after и ::before псевдоэлементы из этого класса */
+}
+
+.annotation-controls {
+  margin-top: 15px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+}
+
+.annotation-controls label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.annotation-controls input,
+.annotation-controls select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.annotation-controls button {
+  padding: 8px 16px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.annotation-controls button:first-child {
+  background-color: #28a745;
+  color: white;
+}
+
+.annotation-controls button:last-child {
+  background-color: #6c757d;
+  color: white;
+}
